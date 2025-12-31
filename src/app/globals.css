@@ -1,26 +1,638 @@
+/* Google Fonts - DM Sans - Must be first */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 @import "tailwindcss";
 
+/* ========================================
+   HAANSEEN TEMPLATE - CSS VARIABLES
+   Adapted for ArtistOne Music Portfolio
+   ======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors - Dark Theme (Default) */
+  --background-color-default: rgba(14, 16, 17, 1);
+  --background-color-default-hover: #000000;
+  --background-muted: rgba(255, 255, 255, 7%);
+  --background-muted-hover: rgba(255, 255, 255, 11%);
+  --background-primary: rgb(246, 246, 246);
+
+  /* Text Colors */
+  --text-color-default: #ffffff;
+  --text-color-muted: rgba(255, 255, 255, 60%);
+  --text-color-inverse: #0E1011;
+  --text-color-inverse-muted: rgba(14, 16, 17, 60%);
+
+  /* Border */
+  --border-color: #262829;
+
+  /* Tailwind compat */
+  --background: var(--background-color-default);
+  --foreground: var(--text-color-default);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --background-color-default: #ffffff;
+  --background-color-default-hover: #f5f5f5;
+  --background-muted: rgba(14, 16, 17, 7%);
+  --background-muted-hover: rgba(14, 16, 17, 11%);
+  --background-primary: rgb(14, 16, 17);
+
+  --text-color-default: #0E1011;
+  --text-color-muted: rgba(14, 16, 17, 60%);
+  --text-color-inverse: #ffffff;
+  --text-color-inverse-muted: rgba(255, 255, 255, 60%);
+
+  --border-color: #e5e5e5;
+
+  --background: var(--background-color-default);
+  --foreground: var(--text-color-default);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "DM Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  /* 10px base */
+  line-height: 1.6;
+  font-family: "DM Sans", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color-default);
+  color: var(--text-color-default);
+  min-height: 100vh;
+  font-size: 1.6rem;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1 {
+  font-size: 4.0rem;
+  font-weight: bold;
+  line-height: 120%;
+}
+
+h2 {
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 120%;
+}
+
+h3 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  line-height: 120%;
+}
+
+h4 {
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 120%;
+}
+
+h5 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 120%;
+}
+
+h6 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 140%;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+p.meta {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+p.medium {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.button-text {
+  font-size: 1.4rem;
+  line-height: 100%;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+/* ========================================
+   THEME TOGGLE SWITCH
+   ======================================== */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 15px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-muted);
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 9px;
+  width: 9px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--background-primary);
+  transition: 0.4s;
+}
+
+input:checked+.slider {
+  background-color: var(--background-primary);
+}
+
+input:checked+.slider:before {
+  transform: translateX(10px);
+  background-color: var(--background-color-default);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* ========================================
+   LAYOUT - HEADER / NAVBAR
+   ======================================== */
+
+.header--navbar {
+  position: fixed;
+  padding: 4px 16px 12px;
+  background-color: var(--background-color-default);
+  top: 12px;
+  left: 12px;
+  border-bottom-right-radius: 20px;
+  z-index: 100;
+}
+
+.header--navbar ul {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header--navbar_logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header--navbar_logo p {
+  font-weight: 600;
+}
+
+.header--navbar li {
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+}
+
+.header--navbar li:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   LAYOUT - BODY CONTAINER
+   ======================================== */
+
+.body-container {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  min-height: 100vh;
+  padding: 12px;
+}
+
+.body-container__left {
+  width: 50%;
+  height: calc(100vh - 24px);
+  position: sticky;
+  top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.body-container__left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body-container__right {
+  width: 50%;
+  overflow-y: auto;
+}
+
+/* ========================================
+   PROFILE CARD
+   ======================================== */
+
+.home-card-about {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+.home-card-info {
+  background-color: var(--background-muted);
+  padding: 40px;
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.home-card-info:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.home-card-info_profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-card-info_ava {
+  width: 60px;
+  height: 60px;
+  border-radius: 500px;
+  object-fit: cover;
+  background-color: var(--background-muted);
+}
+
+.home-card-info_name p {
+  color: var(--text-color-muted);
+}
+
+.home-card-info_bio {
+  margin-top: 40px;
+}
+
+/* ========================================
+   SOCIAL LINKS
+   ======================================== */
+
+.home-card-socials {
+  width: 100%;
+}
+
+.home-card-socials li {
+  background-color: var(--background-muted);
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background-color 0.2s;
+}
+
+.home-card-socials li:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.home-card-socials li:last-child {
+  background-color: var(--background-primary);
+  margin-bottom: 0;
+}
+
+.home-card-socials li:last-child p {
+  color: var(--text-color-inverse);
+}
+
+.home-card-socials li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socials-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.socials-icon svg {
+  color: var(--background-primary);
+}
+
+/* Social Grid variant */
+.home-card-socials.grid-2 ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-card-socials.grid-2 li {
+  margin-bottom: 0;
+}
+
+.home-card-socials.grid-2 li:last-child {
+  background-color: var(--background-muted);
+}
+
+.home-card-socials.grid-2 li:last-child p {
+  color: var(--text-color-default);
+}
+
+/* ========================================
+   LATEST WORK / MUSIC SECTION
+   ======================================== */
+
+.lastest-work {
+  background-color: var(--background-muted);
+  display: flex;
+  margin: 12px 0;
+  padding: 24px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.lastest-work--title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a.button-text.view-all {
+  position: relative;
+}
+
+a.button-text.view-all::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--background-primary);
+  transition: width 0.4s ease;
+}
+
+a.button-text.view-all:hover::after {
+  width: 40%;
+}
+
+/* ========================================
+   ALBUM / WORK CARDS
+   ======================================== */
+
+.work-cards-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.work-card-container--showcase {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.work-card-container--showcase img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--background-muted);
+}
+
+.work-card-title {
+  width: fit-content;
+  padding: 8px 16px 12px 16px;
+  background-color: var(--background-color-default);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.image-blur {
+  position: absolute;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.work-card-container--showcase:hover .image-blur {
+  opacity: 1;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn-view-all {
+  background-color: var(--background-muted);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 12px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-view-all:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.btn-contact-me {
+  display: flex;
+  background-color: var(--background-primary);
+  margin: 12px 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.btn-contact-me i,
+.btn-contact-me p {
+  color: var(--text-color-inverse);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer-infos-contact {
+  background-color: var(--background-primary);
+  border-radius: 16px;
+  padding: 64px 64px 48px;
+  margin-bottom: 12px;
+}
+
+.footer-infos-contact .home-card-info_profile h5 {
+  color: var(--text-color-inverse);
+}
+
+.footer-infos-contact .home-card-info_profile p {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer-contact-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+
+.footer-contact--more {
+  background-color: var(--background-color-default);
+  display: flex;
+  height: fit-content;
+  gap: 4px;
+  padding: 10px 12px 10px 14px;
+  border-radius: 6px;
+}
+
+.footer-contact-navi {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-contact-navi .footer--nav {
+  padding-right: 80px;
+  margin-bottom: 32px;
+}
+
+.footer-contact-navi a {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer--nav h6 {
+  margin-bottom: 32px;
+  color: var(--text-color-inverse);
+}
+
+.footer--nav li {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.footer-license p {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer-license a {
+  color: var(--text-color-inverse);
+  text-decoration: underline;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .body-container {
+    flex-direction: column;
+  }
+
+  .body-container__left {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+  }
+
+  .body-container__right {
+    width: 100%;
+    padding-top: 24px;
+  }
+
+  .home-card-about {
+    flex-direction: column;
+  }
+
+  .footer-contact-navi {
+    flex-wrap: wrap;
+  }
+
+  .footer-contact-navi .footer--nav {
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .work-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .home-card-socials.grid-2 ul {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-infos-contact {
+    padding: 32px;
+  }
 }
