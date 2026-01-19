@@ -1,10 +1,10 @@
 /**
  * TypeScript definitions cho Supabase Database Schema
- * Được generate dựa trên ERD trong Architecture Design Document
+ * Supabase-only approach - không phụ thuộc Spotify API
  * 
  * Tables:
  * - artists: Thông tin nghệ sĩ
- * - albums: Danh sách album
+ * - albums: Danh sách album (full data)
  * - tracks: Các bài hát trong album
  */
 
@@ -46,76 +46,64 @@ export interface Database {
             albums: {
                 Row: {
                     id: string
-                    artist_id: string
                     title: string
-                    release_date: string | null
+                    slug: string
+                    bio: string | null
+                    release_year: number
+                    album_type: string
+                    genre: string | null
+                    featured_artists: string | null
                     cover_url: string | null
+                    youtube_video_id: string | null
+                    spotify_album_id: string | null
+                    spotify_url: string | null
+                    is_featured: boolean
+                    display_order: number
                     created_at: string
+                    updated_at: string
                 }
                 Insert: {
                     id?: string
-                    artist_id: string
                     title: string
-                    release_date?: string | null
+                    slug: string
+                    bio?: string | null
+                    release_year: number
+                    album_type?: string
+                    genre?: string | null
+                    featured_artists?: string | null
                     cover_url?: string | null
+                    youtube_video_id?: string | null
+                    spotify_album_id?: string | null
+                    spotify_url?: string | null
+                    is_featured?: boolean
+                    display_order?: number
                     created_at?: string
+                    updated_at?: string
                 }
                 Update: {
                     id?: string
-                    artist_id?: string
                     title?: string
-                    release_date?: string | null
+                    slug?: string
+                    bio?: string | null
+                    release_year?: number
+                    album_type?: string
+                    genre?: string | null
+                    featured_artists?: string | null
                     cover_url?: string | null
+                    youtube_video_id?: string | null
+                    spotify_album_id?: string | null
+                    spotify_url?: string | null
+                    is_featured?: boolean
+                    display_order?: number
                     created_at?: string
+                    updated_at?: string
                 }
-                Relationships: [
-                    {
-                        foreignKeyName: 'albums_artist_id_fkey'
-                        columns: ['artist_id']
-                        isOneToOne: false
-                        referencedRelation: 'artists'
-                        referencedColumns: ['id']
-                    }
-                ]
+                Relationships: []
             }
-            tracks: {
-                Row: {
-                    id: string
-                    album_id: string
-                    title: string
-                    duration_seconds: number
-                    audio_file_url: string | null
-                    plays_count: number
-                    created_at: string
-                }
-                Insert: {
-                    id?: string
-                    album_id: string
-                    title: string
-                    duration_seconds: number
-                    audio_file_url?: string | null
-                    plays_count?: number
-                    created_at?: string
-                }
-                Update: {
-                    id?: string
-                    album_id?: string
-                    title?: string
-                    duration_seconds?: number
-                    audio_file_url?: string | null
-                    plays_count?: number
-                    created_at?: string
-                }
-                Relationships: [
-                    {
-                        foreignKeyName: 'tracks_album_id_fkey'
-                        columns: ['album_id']
-                        isOneToOne: false
-                        referencedRelation: 'albums'
-                        referencedColumns: ['id']
-                    }
-                ]
-            }
+            // NOTE: Table 'tracks' đã được loại bỏ
+            // Lý do: Sử dụng Spotify Embed để hiển thị tracks
+            // Tất cả sản phẩm (Album, EP, Single) đều lưu trong table 'albums'
+            // Phân biệt bằng field 'album_type'
         }
         Views: {
             [_ in never]: never
@@ -132,12 +120,9 @@ export interface Database {
 // Alias types for easier usage
 export type Artist = Database['public']['Tables']['artists']['Row']
 export type Album = Database['public']['Tables']['albums']['Row']
-export type Track = Database['public']['Tables']['tracks']['Row']
 
 export type InsertArtist = Database['public']['Tables']['artists']['Insert']
 export type InsertAlbum = Database['public']['Tables']['albums']['Insert']
-export type InsertTrack = Database['public']['Tables']['tracks']['Insert']
 
 export type UpdateArtist = Database['public']['Tables']['artists']['Update']
 export type UpdateAlbum = Database['public']['Tables']['albums']['Update']
-export type UpdateTrack = Database['public']['Tables']['tracks']['Update']

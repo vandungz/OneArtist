@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { getStorageUrl } from '@/lib/utils'
 
 interface AlbumCardProps {
     /**
@@ -14,9 +13,6 @@ interface AlbumCardProps {
 export function AlbumCard({ coverUrl, title, slug }: AlbumCardProps) {
     return (
         <Link href={`/albums/${slug}`} className="work-card-container--showcase">
-            {/* Blur overlay on hover */}
-            <div className="image-blur"></div>
-
             {/* Album Cover */}
             {coverUrl ? (
                 <img src={coverUrl} alt={title} />
@@ -35,6 +31,8 @@ export function AlbumCard({ coverUrl, title, slug }: AlbumCardProps) {
                 </div>
             )}
 
+            {/* Blur overlay on hover - must be after image for backdrop-filter to work */}
+            <div className="image-blur"></div>
 
             {/* Title overlay */}
             <div className="work-card-title">
@@ -47,8 +45,10 @@ export function AlbumCard({ coverUrl, title, slug }: AlbumCardProps) {
 interface AlbumGridProps {
     albums: Array<{
         id: string
+        slug?: string         // URL-friendly slug
         title: string
-        cover_url: string | null
+        cover_url?: string | null
+        coverUrl?: string | null  // Alternative key từ service
     }>
 }
 
@@ -58,19 +58,11 @@ export function AlbumGrid({ albums }: AlbumGridProps) {
             {albums.map((album) => (
                 <AlbumCard
                     key={album.id}
-                    coverUrl={album.cover_url || undefined}
+                    coverUrl={album.cover_url || album.coverUrl || undefined}
                     title={album.title}
-                    slug={album.id}
+                    slug={album.slug || album.id}
                 />
             ))}
         </div>
     )
 }
-
-// Placeholder albums for demo
-export const placeholderAlbums = [
-    { id: 'N0L4B3L', title: 'N0L4B3L', cover_url: getStorageUrl('artist_assets', 'covers/N0L4B3L.jpg') },
-    { id: 'MONGYU', title: 'MỘNG YU', cover_url: getStorageUrl('artist_assets', 'covers/MONGYU.jpg') },
-    { id: '99', title: '99%', cover_url: getStorageUrl('artist_assets', 'covers/99.jpg') },
-    { id: 'TAIVISAO', title: 'TẠI VÌ SAO', cover_url: getStorageUrl('artist_assets', 'covers/TAIVISAO.jpg') },
-]

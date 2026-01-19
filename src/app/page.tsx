@@ -1,26 +1,29 @@
 import Link from 'next/link'
-import { getStorageUrl } from '@/lib/utils'
-import { HeroImage } from '@/components/layout/HeroImage'
+import { HeroGallery } from '@/components/layout/HeroGallery'
 import { ProfileCard } from '@/components/shared/ProfileCard'
 import { SocialLinks, defaultSocialLinks } from '@/components/shared/SocialLinks'
-import { AlbumGrid, placeholderAlbums } from '@/components/shared/AlbumCard'
+import { AlbumGrid } from '@/components/shared/AlbumCard'
 import { Footer } from '@/components/layout/Footer'
+import { getMainArtistWithFallback } from '@/services/artists'
+import { getFeaturedAlbums } from '@/services/albums'
+import { getHomepageMedia } from '@/services/storage'
 
-// TODO: Fetch from Supabase
-const artistData = {
-  name: 'MCK',
-  role: 'Musician / Rapper',
-  bio: "Mac DeMarco is a Canadian self-produced multi-instrumentalist, songwriter, and recording artist. Raised in Edmonton, Alberta, and currently residing in Los Angeles, California",
-  avatarUrl: getStorageUrl('artist_assets', 'avatars/profile.jpg'),
-  heroImageUrl: getStorageUrl('artist_assets', 'hero/hero.jpg'),
-}
+// Revalidate data mỗi 60 giây (hoặc set 0 để luôn fresh)
+export const revalidate = 0
 
-export default function Home() {
+export default async function Home() {
+  // Fetch data từ Supabase
+  const artist = await getMainArtistWithFallback()
+  const featuredAlbums = await getFeaturedAlbums(4)
+  
+  // Get media from album covers for hero gallery
+  const heroMedia = getHomepageMedia(featuredAlbums)
+
   return (
     <div className="body-container">
-      {/* Left Column - Hero Image */}
-      <HeroImage
-        imageUrl={artistData.heroImageUrl}
+      {/* Left Column - Hero Gallery with album covers */}
+      <HeroGallery
+        media={heroMedia}
         label="Latest Music"
       />
 
@@ -29,10 +32,10 @@ export default function Home() {
         {/* Profile & Social Links */}
         <div className="home-card-about">
           <ProfileCard
-            avatarUrl={artistData.avatarUrl}
-            name={artistData.name}
-            role={artistData.role}
-            bio={artistData.bio}
+            avatarUrl={artist.avatarUrl ?? undefined}
+            name={artist.name}
+            role={artist.role}
+            bio={artist.bio ?? undefined}
           />
           <SocialLinks links={defaultSocialLinks} />
         </div>
@@ -51,7 +54,7 @@ export default function Home() {
         </div>
 
         {/* Album Grid */}
-        <AlbumGrid albums={placeholderAlbums} />
+        <AlbumGrid albums={featuredAlbums} />
 
         {/* View All Projects Button */}
         <div className="btn-view-all button-text">
@@ -70,9 +73,9 @@ export default function Home() {
           </Link>
 
           <Footer
-            artistName={artistData.name}
-            role={artistData.role}
-            avatarUrl={artistData.avatarUrl}
+            artistName={artist.name}
+            role={artist.role}
+            avatarUrl={artist.avatarUrl ?? undefined}
           />
         </div>
       </div>

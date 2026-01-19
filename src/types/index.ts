@@ -7,27 +7,14 @@
 export type {
     Artist,
     Album,
-    Track,
     InsertArtist,
     InsertAlbum,
-    InsertTrack,
     UpdateArtist,
     UpdateAlbum,
-    UpdateTrack,
     Database,
 } from '@/lib/supabase/database.types'
 
 // Extended types với relations
-export interface AlbumWithTracks {
-    id: string
-    artist_id: string
-    title: string
-    release_date: string | null
-    cover_url: string | null
-    created_at: string
-    tracks: TrackInfo[]
-}
-
 export interface ArtistWithAlbums {
     id: string
     name: string
@@ -38,19 +25,13 @@ export interface ArtistWithAlbums {
 }
 
 // Simplified types cho UI components
-export interface TrackInfo {
-    id: string
-    title: string
-    duration_seconds: number
-    audio_file_url: string | null
-    plays_count: number
-}
-
 export interface AlbumInfo {
     id: string
     title: string
+    slug: string
     cover_url: string | null
-    release_date: string | null
+    album_type: string  // 'Album' | 'EP' | 'Single'
+    release_year: number
 }
 
 // Tour interface (cho tương lai)
@@ -64,14 +45,4 @@ export interface TourEvent {
     ticket_url: string | null
     latitude: number
     longitude: number
-}
-
-// Audio Player State
-export interface PlayerState {
-    currentTrack: TrackInfo | null
-    isPlaying: boolean
-    currentTime: number
-    duration: number
-    volume: number
-    queue: TrackInfo[]
 }

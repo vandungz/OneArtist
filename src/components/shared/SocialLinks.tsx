@@ -76,9 +76,9 @@ export function SocialLinks({ links, variant = 'default' }: SocialLinksProps) {
 
 // Default social links for artist
 export const defaultSocialLinks: SocialLink[] = [
-    { label: 'Spotify', href: '#', icon: 'spotify' },
-    { label: 'YouTube', href: '#', icon: 'youtube' },
-    { label: 'Instagram', href: '#', icon: 'instagram' },
-    { label: 'SoundCloud', href: '#', icon: 'soundcloud' },
+    { label: 'Spotify', href: 'https://open.spotify.com/artist/6TITnFVRcl0AcZ4syE7Toe', icon: 'spotify' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@low.g', icon: 'youtube' },
+    { label: 'Instagram', href: 'https://www.instagram.com/lf.low.g/', icon: 'instagram' },
+    { label: 'SoundCloud', href: 'https://soundcloud.com/lowg-sc', icon: 'soundcloud' },
     { label: 'Contact Me', href: '/contact', icon: 'mail', isContact: true },
 ]
