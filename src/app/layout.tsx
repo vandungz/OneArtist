@@ -12,7 +12,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "ArtistOne - Music Artist Portfolio",
-  description: "Professional music artist portfolio built with Next.js and Supabase",
+  description: "Professional music artist portfolio",
 };
 
 export default function RootLayout({

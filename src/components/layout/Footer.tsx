@@ -53,12 +53,12 @@ export function Footer({ artistName, role = 'Artist', avatarUrl }: FooterProps) 
                     </div>
                 </div>
 
-                <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="footer-contact--more">
+                {/* <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="footer-contact--more">
                     <p>Powered by Supabase</p>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                </a>
+                </a> */}
             </div>
 
             {/* Navigation Links */}
@@ -100,9 +100,7 @@ export function Footer({ artistName, role = 'Artist', avatarUrl }: FooterProps) 
             {/* License */}
             <div className="footer-license">
                 <p className="meta">
-                    © {new Date().getFullYear()} {artistName}. Built with{' '}
-                    <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">Next.js</a>
-                    {' '}& <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>
+                    © {new Date().getFullYear()} {artistName}
                 </p>
             </div>
         </div>
