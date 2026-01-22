@@ -1,0 +1,68 @@
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer-infos-contact {
+  background-color: var(--background-primary);
+  border-radius: 16px;
+  padding: 64px 64px 48px;
+  margin-bottom: 12px;
+}
+
+.footer-infos-contact .home-card-info_profile h5 {
+  color: var(--text-color-inverse);
+}
+
+.footer-infos-contact .home-card-info_profile p {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer-contact-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+
+.footer-contact--more {
+  background-color: var(--background-color-default);
+  display: flex;
+  height: fit-content;
+  gap: 4px;
+  padding: 10px 12px 10px 14px;
+  border-radius: 6px;
+}
+
+.footer-contact-navi {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-contact-navi .footer--nav {
+  padding-right: 80px;
+  margin-bottom: 32px;
+}
+
+.footer-contact-navi a {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer--nav h6 {
+  margin-bottom: 32px;
+  color: var(--text-color-inverse);
+}
+
+.footer--nav li {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.footer-license p {
+  color: var(--text-color-inverse-muted);
+}
+
+.footer-license a {
+  color: var(--text-color-inverse);
+  text-decoration: underline;
+}

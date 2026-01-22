@@ -1,0 +1,44 @@
+/* ========================================
+   PROFILE CARD
+   ======================================== */
+
+.home-card-about {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+.home-card-info {
+  background-color: var(--background-muted);
+  padding: 40px;
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.home-card-info:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.home-card-info_profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-card-info_ava {
+  width: 60px;
+  height: 60px;
+  border-radius: 500px;
+  object-fit: cover;
+  background-color: var(--background-muted);
+}
+
+.home-card-info_name p {
+  color: var(--text-color-muted);
+}
+
+.home-card-info_bio {
+  margin-top: 40px;
+}

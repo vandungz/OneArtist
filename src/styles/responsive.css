@@ -1,0 +1,80 @@
+/* ========================================
+   RESPONSIVE - Media Queries
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .body-container {
+    flex-direction: column;
+  }
+
+  .body-container__left {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+  }
+
+  .body-container__right {
+    width: 100%;
+    padding-top: 24px;
+  }
+
+  .home-card-about {
+    flex-direction: column;
+  }
+
+  .footer-contact-navi {
+    flex-wrap: wrap;
+  }
+
+  .footer-contact-navi .footer--nav {
+    padding-right: 40px;
+  }
+
+  .album-detail-header {
+    flex-direction: column;
+  }
+
+  .album-info-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: unset;
+  }
+
+  .album-info-card {
+    flex: 1;
+    min-width: calc(50% - 6px);
+  }
+}
+
+@media (max-width: 640px) {
+  .work-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .home-card-socials.grid-2 ul {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-infos-contact {
+    padding: 32px;
+  }
+
+  .album-info-cards {
+    flex-direction: column;
+  }
+
+  .album-info-card {
+    min-width: 100%;
+  }
+
+  .album-player-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .album-player-cover {
+    width: 150px;
+    height: 150px;
+  }
+}

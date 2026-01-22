@@ -1,0 +1,63 @@
+/* ========================================
+   SOCIAL LINKS
+   ======================================== */
+
+.home-card-socials {
+  width: 100%;
+}
+
+.home-card-socials li {
+  background-color: var(--background-muted);
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background-color 0.2s;
+}
+
+.home-card-socials li:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.home-card-socials li:last-child {
+  background-color: var(--background-primary);
+  margin-bottom: 0;
+}
+
+.home-card-socials li:last-child p {
+  color: var(--text-color-inverse);
+}
+
+.home-card-socials li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socials-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.socials-icon svg {
+  color: var(--background-primary);
+}
+
+/* Social Grid variant */
+.home-card-socials.grid-2 ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-card-socials.grid-2 li {
+  margin-bottom: 0;
+}
+
+.home-card-socials.grid-2 li:last-child {
+  background-color: var(--background-muted);
+}
+
+.home-card-socials.grid-2 li:last-child p {
+  color: var(--text-color-default);
+}

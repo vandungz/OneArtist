@@ -1,0 +1,39 @@
+/* ========================================
+   LAYOUT - Header / Navbar
+   ======================================== */
+
+.header--navbar {
+  position: fixed;
+  padding: 4px 16px 12px;
+  background-color: var(--background-color-default);
+  top: 12px;
+  left: 12px;
+  border-bottom-right-radius: 20px;
+  z-index: 100;
+}
+
+.header--navbar ul {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header--navbar_logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header--navbar_logo p {
+  font-weight: 600;
+}
+
+.header--navbar li {
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+}
+
+.header--navbar li:hover {
+  opacity: 0.7;
+}

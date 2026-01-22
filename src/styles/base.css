@@ -1,0 +1,37 @@
+/* ========================================
+   BASE STYLES - Reset & Defaults
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  /* 10px base */
+  line-height: 1.6;
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  background-color: var(--background-color-default);
+  color: var(--text-color-default);
+  min-height: 100vh;
+  font-size: 1.6rem;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}

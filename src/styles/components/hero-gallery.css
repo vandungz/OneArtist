@@ -1,0 +1,110 @@
+/* ========================================
+   HERO GALLERY - Staggered Fade-in Up
+   ======================================== */
+
+.hero-gallery {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--background-muted);
+}
+
+.hero-gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-gallery-item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Hidden state - clipped and blurred (invisible but positioned) */
+.hero-gallery-item.stagger-hidden {
+  clip-path: inset(100% 0 0 0);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* Base layer - static, always visible */
+.hero-gallery-item.hero-gallery-base {
+  clip-path: inset(0 0 0 0);
+  filter: blur(0);
+}
+
+/* Animating state - wipe reveal from bottom with blur */
+.hero-gallery-item.wipe-animating {
+  animation: verticalBlurWipeReveal 1.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+/* Complete state - fully visible */
+.hero-gallery-item.wipe-complete {
+  clip-path: inset(0 0 0 0);
+  filter: blur(0);
+}
+
+@keyframes verticalBlurWipeReveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    filter: blur(16px);
+  }
+  40% {
+    filter: blur(10px);
+  }
+  70% {
+    filter: blur(4px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+  }
+}
+
+.hero-gallery-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dots indicator */
+.hero-gallery-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.hero-gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-gallery-dot.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+/* Select work label - overlay on hero */
+.select-work {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background-color: var(--background-color-default);
+  padding: 8px 14px;
+  border-radius: 6px;
+  z-index: 10;
+}

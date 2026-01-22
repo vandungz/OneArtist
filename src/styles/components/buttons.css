@@ -1,0 +1,32 @@
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn-view-all {
+  background-color: var(--background-muted);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 12px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-view-all:hover {
+  background-color: var(--background-muted-hover);
+}
+
+.btn-contact-me {
+  display: flex;
+  background-color: var(--background-primary);
+  margin: 12px 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.btn-contact-me i,
+.btn-contact-me p {
+  color: var(--text-color-inverse);
+}

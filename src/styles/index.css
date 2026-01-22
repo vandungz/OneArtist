@@ -1,0 +1,21 @@
+/* ========================================
+   MAIN STYLES INDEX
+   Central import file for all styles
+   ======================================== */
+
+/* Core */
+@import "./variables.css";
+@import "./base.css";
+@import "./typography.css";
+
+/* Layout */
+@import "./layout/index.css";
+
+/* Components */
+@import "./components/index.css";
+
+/* Pages */
+@import "./pages/index.css";
+
+/* Responsive (should be last) */
+@import "./responsive.css";

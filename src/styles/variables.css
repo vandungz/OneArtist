@@ -1,0 +1,50 @@
+/* ========================================
+   CSS VARIABLES - Theme Colors & Design Tokens
+   ======================================== */
+
+:root {
+  /* Colors - Dark Theme (Default) */
+  --background-color-default: rgba(14, 16, 17, 1);
+  --background-color-default-hover: #000000;
+  --background-muted: rgba(255, 255, 255, 7%);
+  --background-muted-hover: rgba(255, 255, 255, 11%);
+  --background-primary: rgb(246, 246, 246);
+
+  /* Text Colors */
+  --text-color-default: #ffffff;
+  --text-color-muted: rgba(255, 255, 255, 60%);
+  --text-color-inverse: #0E1011;
+  --text-color-inverse-muted: rgba(14, 16, 17, 60%);
+
+  /* Border */
+  --border-color: #262829;
+
+  /* Tailwind compat */
+  --background: var(--background-color-default);
+  --foreground: var(--text-color-default);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --background-color-default: #ffffff;
+  --background-color-default-hover: #f5f5f5;
+  --background-muted: rgba(14, 16, 17, 7%);
+  --background-muted-hover: rgba(14, 16, 17, 11%);
+  --background-primary: rgb(14, 16, 17);
+
+  --text-color-default: #0E1011;
+  --text-color-muted: rgba(14, 16, 17, 60%);
+  --text-color-inverse: #ffffff;
+  --text-color-inverse-muted: rgba(255, 255, 255, 60%);
+
+  --border-color: #e5e5e5;
+
+  --background: var(--background-color-default);
+  --foreground: var(--text-color-default);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "DM Sans", sans-serif;
+}
