@@ -1,0 +1,102 @@
+/* ========================================
+   PAGES - Music / Work Page Styles
+   ======================================== */
+
+/* Page Header Card */
+.work-card-about {
+  width: 100%;
+  background-color: var(--background-muted);
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.work-card--title {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.work-card--description {
+  max-width: 600px;
+}
+
+.work-card--description p {
+  color: var(--text-color-muted);
+  line-height: 160%;
+}
+
+/* Work Items List */
+.work-wrapper {
+  width: 100%;
+}
+
+.work-section {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.work-items {
+  width: 100%;
+}
+
+.work-items--container {
+  display: flex;
+  padding: 24px;
+  margin: 12px 0;
+  background-color: var(--background-muted);
+  border-radius: 12px;
+  justify-content: space-between;
+  overflow: hidden;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.work-items--container:hover {
+  background-color: var(--background-muted-hover);
+}
+
+/* Slide description left on hover to reveal arrow */
+.work-items--container:hover .work-items--description {
+  transform: translateX(-32px);
+}
+
+/* Show arrow on hover */
+.work-items--container:hover svg {
+  opacity: 1;
+}
+
+.work-items--title h5 {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.work-items--description {
+  display: flex;
+  gap: 32px;
+  transform: translateX(0);
+  transition: transform 0.45s ease;
+}
+
+.work-items--description .meta {
+  color: var(--text-color-muted);
+}
+
+/* Arrow icon - hidden by default, rotated */
+.work-items--container svg {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 24px;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  color: var(--text-color-default);
+}
+
+/* Hero image transition for work page hover effect */
+img.body-container--left {
+  transition: opacity 0.5s ease;
+  display: block;
+}
