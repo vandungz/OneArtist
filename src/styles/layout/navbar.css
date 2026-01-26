@@ -4,10 +4,10 @@
 
 .header--navbar {
   position: fixed;
-  padding: 4px 16px 12px;
-  background-color: var(--background-color-default);
   top: 12px;
   left: 12px;
+  padding: 4px 16px 12px;
+  background-color: var(--background-color-default);
   border-bottom-right-radius: 20px;
   z-index: 100;
 }

@@ -24,6 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable}`}>
         <ThemeProvider>
+          <div className="viewport-frame" aria-hidden="true" />
           <Navbar />
           {children}
         </ThemeProvider>

@@ -2,6 +2,24 @@
    RESPONSIVE - Media Queries
    ======================================== */
 
+/* Frame responsive */
+@media (max-width: 768px) {
+  .viewport-frame {
+    border-width: 8px;
+  }
+
+  .viewport-frame::after {
+    box-shadow: 0 0 0 8px var(--background-color-default);
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .viewport-frame {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .body-container {
     flex-direction: column;
