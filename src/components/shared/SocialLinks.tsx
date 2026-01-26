@@ -1,5 +1,23 @@
 import Link from 'next/link'
 
+// Arrow Navigation Icon for hover effect
+const ArrowIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style={{ width: '100%', height: '100%', display: 'inline-block', fill: 'currentColor' }}>
+        <g>
+            <path d="M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z"></path>
+        </g>
+    </svg>
+)
+
+// Arrow Right Icon for contact button
+const ArrowRightIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style={{ width: '100%', height: '100%', display: 'inline-block', fill: 'currentColor' }}>
+        <g>
+            <path d="M220.24,132.24l-72,72a6,6,0,0,1-8.48-8.48L201.51,134H40a6,6,0,0,1,0-12H201.51L139.76,60.24a6,6,0,0,1,8.48-8.48l72,72A6,6,0,0,1,220.24,132.24Z"></path>
+        </g>
+    </svg>
+)
+
 // Social Icons as separate components for cleaner code
 const InstagramIcon = () => (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,13 +75,21 @@ export function SocialLinks({ links, variant = 'default' }: SocialLinksProps) {
             <ul>
                 {links.map((link, index) => {
                     const IconComponent = iconMap[link.icon]
+                    const isContact = link.isContact
 
                     return (
-                        <li key={index}>
+                        <li key={index} className={isContact ? 'social-contact-item' : ''}>
                             <Link href={link.href}>
                                 <p>{link.label}</p>
-                                <div className="socials-icon">
-                                    <IconComponent />
+                                <div className="icon-wrapper">
+                                    <div className="icon-stack">
+                                        <div className="socials-icon">
+                                            <IconComponent />
+                                        </div>
+                                        <div className={`nav-icon ${isContact ? 'nav-icon--contact' : ''}`}>
+                                            {isContact ? <ArrowRightIcon /> : <ArrowIcon />}
+                                        </div>
+                                    </div>
                                 </div>
                             </Link>
                         </li>

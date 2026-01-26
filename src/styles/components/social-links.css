@@ -34,13 +34,49 @@
   justify-content: space-between;
 }
 
-.socials-icon {
+/* Icon wrapper for hover animation */
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 18px;
+}
+
+.icon-wrapper .icon-stack {
+  position: relative;
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.45s ease;
+}
+
+.icon-wrapper .nav-icon {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+/* Animate icon stack on hover */
+.home-card-socials li:hover .icon-wrapper .icon-stack {
+  transform: translateY(-100%);
+}
+
+.icon-wrapper .socials-icon,
+.icon-wrapper .nav-icon {
   width: 18px;
   height: 18px;
+  display: inline-block;
 }
 
 .socials-icon svg {
   color: var(--background-primary);
+}
+
+.nav-icon svg {
+  color: var(--background-primary);
+}
+
+.nav-icon--contact svg {
+  color: var(--text-color-inverse);
 }
 
 /* Social Grid variant */
@@ -60,4 +96,9 @@
 
 .home-card-socials.grid-2 li:last-child p {
   color: var(--text-color-default);
+}
+
+.home-card-socials.grid-2 li:last-child .socials-icon svg,
+.home-card-socials.grid-2 li:last-child .nav-icon svg {
+  color: var(--background-primary);
 }

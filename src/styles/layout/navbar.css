@@ -2,20 +2,57 @@
    LAYOUT - Header / Navbar
    ======================================== */
 
-.header--navbar {
+.header {
   position: fixed;
   top: 12px;
   left: 12px;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+}
+
+.header--navbar {
   padding: 4px 16px 12px;
   background-color: var(--background-color-default);
   border-bottom-right-radius: 20px;
-  z-index: 100;
+  z-index: 1;
 }
 
 .header--navbar ul {
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.header--navbar li {
+  display: flex;
+  align-items: center;
+}
+
+/* Text flip animation for nav links */
+.header--navbar a {
+  overflow: hidden;
+  display: inline-block;
+  height: 2.4rem;
+}
+
+.header--navbar p {
+  position: relative;
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.45s ease;
+}
+
+.header--navbar p::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.header--navbar a:hover p {
+  transform: translateY(-100%);
 }
 
 .header--navbar_logo {
@@ -28,12 +65,18 @@
   font-weight: 600;
 }
 
-.header--navbar li {
-  cursor: pointer;
-  transition: opacity 0.2s;
-  display: flex;
+/* Corner decorations - positioned relative to navbar */
+.header--navbar-corner-right {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  align-self: flex-start;
 }
 
-.header--navbar li:hover {
-  opacity: 0.7;
+.header--navbar-corner-bottom {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  margin-top: -18px;
 }

@@ -16,6 +16,7 @@
   background-color: var(--background-muted-hover);
 }
 
+/* Contact Me Button with icon animation */
 .btn-contact-me {
   display: flex;
   background-color: var(--background-primary);
@@ -24,9 +25,55 @@
   justify-content: space-between;
   padding: 20px;
   border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-contact-me:hover {
+  opacity: 0.9;
 }
 
 .btn-contact-me i,
 .btn-contact-me p {
+  color: var(--text-color-inverse);
+}
+
+/* Icon animation for contact button */
+.btn-contact-me .icon-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 18px;
+}
+
+.btn-contact-me .icon-wrapper .icon-stack {
+  position: relative;
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.45s ease;
+}
+
+.btn-contact-me .icon-wrapper .nav-icon {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+.btn-contact-me:hover .icon-wrapper .icon-stack {
+  transform: translateY(-100%);
+}
+
+.btn-contact-me .icon-wrapper .socials-icon,
+.btn-contact-me .icon-wrapper .nav-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+.btn-contact-me .socials-icon svg {
+  color: var(--text-color-inverse);
+}
+
+.btn-contact-me .nav-icon svg {
   color: var(--text-color-inverse);
 }
