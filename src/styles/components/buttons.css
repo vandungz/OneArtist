@@ -60,7 +60,7 @@
 }
 
 .btn-contact-me:hover .icon-wrapper .icon-stack {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
 }
 
 .btn-contact-me .icon-wrapper .socials-icon,

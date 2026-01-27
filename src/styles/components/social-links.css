@@ -8,6 +8,7 @@
 
 .home-card-socials li {
   background-color: var(--background-muted);
+  align-items: center;
   padding: 20px;
   border-radius: 12px;
   cursor: pointer;
@@ -22,6 +23,10 @@
 .home-card-socials li:last-child {
   background-color: var(--background-primary);
   margin-bottom: 0;
+}
+
+.home-card-socials li:last-child svg {
+  color: var(--text-color-inverse);
 }
 
 .home-card-socials li:last-child p {
@@ -57,7 +62,7 @@
 
 /* Animate icon stack on hover */
 .home-card-socials li:hover .icon-wrapper .icon-stack {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
 }
 
 .icon-wrapper .socials-icon,

@@ -67,8 +67,6 @@ export function MusicPageClient({
 
                 {/* Footer Contact Section */}
                 <div className="footer-contact">
-                    <SocialLinks links={socialLinks} variant="grid" />
-
                     <Link href="/contact" className="btn-contact-me">
                         <p>Contact Me</p>
                         <div className="icon-wrapper">
