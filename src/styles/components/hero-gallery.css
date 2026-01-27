@@ -101,7 +101,7 @@
 /* Select work label - overlay on hero */
 .select-work {
   position: absolute;
-  bottom: 12px;
+  bottom: 0;
   right: 0;
   background-color: var(--background-color-default);
   padding: 12px 16px 8px 16px;

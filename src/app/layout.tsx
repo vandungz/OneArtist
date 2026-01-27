@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
+import { getMainArtistWithFallback } from "@/services/artists";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -15,17 +16,23 @@ export const metadata: Metadata = {
   description: "Professional music artist portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const artist = await getMainArtistWithFallback();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable}`}>
         <ThemeProvider>
           <div className="viewport-frame" aria-hidden="true" />
-          <Navbar />
+          <Navbar 
+            avatarUrl={artist.avatarUrl ?? undefined}
+            name={artist.name}
+            role={artist.role}
+          />
           {children}
         </ThemeProvider>
       </body>

@@ -5,18 +5,25 @@
 /* Frame responsive */
 @media (max-width: 768px) {
   .viewport-frame {
-    border-width: 8px;
+    border-width: 12px;
   }
 
   .viewport-frame::after {
-    box-shadow: 0 0 0 8px var(--background-color-default);
-    border-radius: 10px;
+    box-shadow: 0 0 0 12px var(--background-color-default);
+    border-radius: 12px;
   }
+
 }
 
 @media (max-width: 480px) {
+  /* Keep viewport frame on mobile - smaller border */
   .viewport-frame {
-    display: none;
+    border-width: 12px;
+  }
+
+  .viewport-frame::after {
+    box-shadow: 0 0 0 12px var(--background-color-default);
+    border-radius: 12px;
   }
 }
 
@@ -52,15 +59,19 @@
     flex-direction: column;
   }
 
+  /* Fix album info cards width on mobile */
   .album-info-cards {
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
     min-width: unset;
+    max-width: unset;
   }
 
   .album-info-card {
     flex: 1;
     min-width: calc(50% - 6px);
+    width: auto;
   }
 }
 
@@ -77,12 +88,14 @@
     padding: 32px;
   }
 
+  /* Album info cards stack on small mobile */
   .album-info-cards {
     flex-direction: column;
   }
 
   .album-info-card {
     min-width: 100%;
+    width: 100%;
   }
 
   .album-player-header {
