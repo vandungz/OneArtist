@@ -443,7 +443,7 @@ a.button-text.view-all:hover::after {
 /* Responsive for next album section */
 @media (max-width: 768px) {
   .next-album-card--preview {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .next-album-thumbnail {
