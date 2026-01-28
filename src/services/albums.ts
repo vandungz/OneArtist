@@ -125,6 +125,53 @@ export async function getAlbumById(id: string): Promise<AlbumData | null> {
     return transformAlbum(album)
 }
 
+/**
+ * Lấy album tiếp theo dựa trên display_order
+ * Nếu không có album tiếp theo, lấy album đầu tiên (circular)
+ */
+export async function getNextAlbum(currentSlug: string): Promise<AlbumData | null> {
+    const supabase = await createClient()
+
+    // Lấy display_order của album hiện tại
+    const { data: currentAlbum, error: currentError } = await supabase
+        .from('albums')
+        .select('display_order')
+        .eq('slug', currentSlug)
+        .single()
+
+    if (currentError || !currentAlbum) {
+        return null
+    }
+
+    // Lấy album tiếp theo với display_order lớn hơn
+    const { data: nextAlbum, error: nextError } = await supabase
+        .from('albums')
+        .select('*')
+        .gt('display_order', currentAlbum.display_order)
+        .order('display_order', { ascending: true })
+        .limit(1)
+        .single()
+
+    if (!nextError && nextAlbum) {
+        return transformAlbum(nextAlbum)
+    }
+
+    // Nếu không có album tiếp theo, lấy album đầu tiên (circular navigation)
+    const { data: firstAlbum, error: firstError } = await supabase
+        .from('albums')
+        .select('*')
+        .neq('slug', currentSlug) // Không lấy chính album hiện tại
+        .order('display_order', { ascending: true })
+        .limit(1)
+        .single()
+
+    if (firstError || !firstAlbum) {
+        return null
+    }
+
+    return transformAlbum(firstAlbum)
+}
+
 // =============================================
 // Helper Functions
 // =============================================

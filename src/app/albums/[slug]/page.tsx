@@ -8,8 +8,9 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { getAlbumBySlug } from '@/services/albums'
+import { getAlbumBySlug, getNextAlbum } from '@/services/albums'
 import { getMainArtistWithFallback } from '@/services/artists'
 import { getAlbumMedia } from '@/services/storage'
 import { HeroGallery } from '@/components/layout/HeroGallery'
@@ -30,9 +31,10 @@ export default async function AlbumDetailPage({ params }: PageProps) {
     const { slug } = await params
 
     // Fetch data từ Supabase
-    const [album, artist] = await Promise.all([
+    const [album, artist, nextAlbum] = await Promise.all([
         getAlbumBySlug(slug),
-        getMainArtistWithFallback()
+        getMainArtistWithFallback(),
+        getNextAlbum(slug)
     ])
 
     if (!album) {
@@ -104,15 +106,44 @@ export default async function AlbumDetailPage({ params }: PageProps) {
 
                 {/* Next Album Preview */}
                 <div className="next-album-section">
-                    <div className="next-album-card">
-                        <span className="next-label">Next</span>
-                        <p className="album-preview-desc">
-                            Khám phá thêm các album khác trong discography của nghệ sĩ.
-                        </p>
-                        <Link href="/music" className="button-text view-all">
-                            View All Albums
-                        </Link>
-                    </div>
+                    {nextAlbum ? (
+                        <div className="next-album-card next-album-card--preview">
+                            <div className="next-album-content">
+                                <span className="next-label">Next</span>
+                                <div className="next-bottom">
+                                    <p className="album-preview-desc">
+                                        {nextAlbum.bio || `${nextAlbum.type} phát hành năm ${nextAlbum.year}.`}
+                                    </p>
+                                    <Link href={`/albums/${nextAlbum.slug}`} className="button-text view-all">
+                                        View Project
+                                    </Link>
+                                </div>
+                            </div>
+                            {nextAlbum.coverUrl && (
+                                <Link href={`/albums/${nextAlbum.slug}`} className="next-album-thumbnail">
+                                    <span className="next-album-title">{nextAlbum.title}</span>
+                                    <div className="next-album-blur" />
+                                    <Image
+                                        src={nextAlbum.coverUrl}
+                                        alt={nextAlbum.title}
+                                        fill
+                                        sizes="(max-width: 768px) 50vw, 280px"
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                </Link>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="next-album-card">
+                            <span className="next-label">Next</span>
+                            <p className="album-preview-desc">
+                                Khám phá thêm các album khác trong discography của nghệ sĩ.
+                            </p>
+                            <Link href="/music" className="button-text view-all">
+                                View All Albums
+                            </Link>
+                        </div>
+                    )}
                 </div>
 
                 {/* Footer Contact Section */}

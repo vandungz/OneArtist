@@ -67,7 +67,7 @@ export function Navbar(
                                             </g>
                                         </g>
                                     </svg>
-                                    <p data-text="lowg">lowg</p>
+                                    <p data-text="Low G">Low G</p>
                                 </div>
                             </Link>
                         </li>
