@@ -104,6 +104,57 @@ export interface Database {
             // Lý do: Sử dụng Spotify Embed để hiển thị tracks
             // Tất cả sản phẩm (Album, EP, Single) đều lưu trong table 'albums'
             // Phân biệt bằng field 'album_type'
+            
+            awards: {
+                Row: {
+                    id: string
+                    artist_id: string | null
+                    title: string
+                    type: string
+                    year: number
+                    url: string | null
+                    description: string | null
+                    display_order: number
+                    is_featured: boolean
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    artist_id?: string | null
+                    title: string
+                    type: string
+                    year: number
+                    url?: string | null
+                    description?: string | null
+                    display_order?: number
+                    is_featured?: boolean
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    artist_id?: string | null
+                    title?: string
+                    type?: string
+                    year?: number
+                    url?: string | null
+                    description?: string | null
+                    display_order?: number
+                    is_featured?: boolean
+                    created_at?: string
+                    updated_at?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "awards_artist_id_fkey"
+                        columns: ["artist_id"]
+                        isOneToOne: false
+                        referencedRelation: "artists"
+                        referencedColumns: ["id"]
+                    }
+                ]
+            }
         }
         Views: {
             [_ in never]: never
@@ -120,9 +171,12 @@ export interface Database {
 // Alias types for easier usage
 export type Artist = Database['public']['Tables']['artists']['Row']
 export type Album = Database['public']['Tables']['albums']['Row']
+export type Award = Database['public']['Tables']['awards']['Row']
 
 export type InsertArtist = Database['public']['Tables']['artists']['Insert']
 export type InsertAlbum = Database['public']['Tables']['albums']['Insert']
+export type InsertAward = Database['public']['Tables']['awards']['Insert']
 
 export type UpdateArtist = Database['public']['Tables']['artists']['Update']
 export type UpdateAlbum = Database['public']['Tables']['albums']['Update']
+export type UpdateAward = Database['public']['Tables']['awards']['Update']

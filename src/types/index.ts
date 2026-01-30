@@ -7,10 +7,13 @@
 export type {
     Artist,
     Album,
+    Award,
     InsertArtist,
     InsertAlbum,
+    InsertAward,
     UpdateArtist,
     UpdateAlbum,
+    UpdateAward,
     Database,
 } from '@/lib/supabase/database.types'
 
@@ -32,6 +35,15 @@ export interface AlbumInfo {
     cover_url: string | null
     album_type: string  // 'Album' | 'EP' | 'Single'
     release_year: number
+}
+
+// Award UI interface
+export interface AwardInfo {
+    id: string
+    title: string
+    type: string
+    year: number
+    url: string | null
 }
 
 // Tour interface (cho tương lai)

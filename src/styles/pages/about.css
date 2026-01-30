@@ -1,0 +1,211 @@
+/* =============================================
+   About Page Styles
+   Based on haanseen_template/styles/css/about.css
+   ============================================= */
+
+/* About Detail Card */
+.about-card--detail {
+    margin: 12px 0;
+    padding: 40px;
+    background-color: var(--background-muted);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 128px;
+}
+
+.about-card--title h2 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.about-card--text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 80%;
+}
+
+.about-card--text p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+/* Clients Marquee */
+.about-marquee {
+    display: flex;
+    gap: 48px;
+    padding: 32px;
+    margin: 12px 0;
+    border-radius: 12px;
+    background-color: var(--background-muted);
+    align-items: center;
+    overflow: hidden;
+}
+
+.about-marquee--title h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.about-marquee-container {
+    overflow: hidden;
+    flex: 1;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.about-marquee--logos {
+    display: flex;
+    gap: 48px;
+    flex-shrink: 0;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-logo svg {
+    height: 24px;
+    width: auto;
+}
+
+.marquee-logo svg:hover {
+    opacity: 1;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Award Section */
+.award-section {
+    margin: 12px 0;
+}
+
+.award-section--header {
+    padding: 48px;
+    border-radius: 12px;
+    background-color: var(--background-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    margin-bottom: 12px;
+}
+
+.award-header--title h2 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.award-header--text {
+    width: 50%;
+}
+
+.award-header--text p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+/* Arrow rotated for external links */
+.arrow-up-right {
+    transform: rotate(-135deg) !important;
+}
+
+/* Award items use work-items styling from work.css */
+.award-section .work-wrapper {
+    margin-top: 0;
+}
+
+.award-section .work-items a {
+    cursor: pointer;
+}
+
+/* =============================================
+   Responsive Styles
+   ============================================= */
+
+@media (max-width: 1024px) {
+    .about-card--detail {
+        padding: 32px;
+        gap: 64px;
+    }
+    
+    .about-card--text {
+        width: 100%;
+    }
+    
+    .award-section--header {
+        padding: 32px;
+        gap: 48px;
+    }
+    
+    .award-header--text {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-card--detail {
+        padding: 24px;
+        gap: 32px;
+    }
+    
+    .about-marquee {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+    }
+    
+    .about-marquee--title {
+        width: 100%;
+    }
+    
+    .award-section--header {
+        padding: 24px;
+        gap: 32px;
+    }
+    
+    .award-header--text {
+        width: 100%;
+    }
+    
+    .award-header--title h2 {
+        font-size: var(--font-size-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .about-card--detail {
+        padding: 20px;
+        gap: 24px;
+    }
+    
+    .about-marquee {
+        padding: 16px;
+    }
+    
+    .about-marquee--logos {
+        gap: 32px;
+    }
+    
+    .marquee-logo svg {
+        height: 20px;
+    }
+}
